@@ -28,3 +28,15 @@ def peewee_db():
         db.execute_sql(drop_schema)
 
     db.close()
+
+
+@pytest.fixture()
+def peewee_query():
+    def _peewee_query(db, query):
+        cursor = db.execute_sql(query)
+
+        columns = [field_md[0] for field_md in cursor.description]
+        rows = cursor.fetchall()
+        return columns, rows
+
+    return _peewee_query
