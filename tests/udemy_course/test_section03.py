@@ -53,8 +53,8 @@ def test_select_with_join(peewee_db, peewee_query):
 @pytest.mark.usefixtures("_create_users_table", "_create_photos_table")
 def test_insert_error(peewee_db):
 
-    with pytest.raises(IntegrityError) as excinfo:
-        with peewee_db.atomic():
+    with peewee_db.atomic():
+        with pytest.raises(IntegrityError) as excinfo:
             peewee_db.execute_sql(
                 """
                 INSERT INTO photos
@@ -129,8 +129,8 @@ def test_drop_photos(peewee_db, peewee_query):
 @pytest.mark.usefixtures("_create_users_table", "_create_photos_table")
 def test_drop_users_cannot_be_done(peewee_db):
 
-    with pytest.raises(InternalError) as excinfo:
-        with peewee_db.atomic():
+    with peewee_db.atomic():
+        with pytest.raises(InternalError) as excinfo:
             peewee_db.execute_sql(
                 """
                 DROP TABLE users
