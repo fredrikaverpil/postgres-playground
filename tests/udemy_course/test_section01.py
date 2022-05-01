@@ -7,9 +7,7 @@ import pytest
 def _create_cities_table(peewee_db):
     with peewee_db.atomic():
         peewee_db.execute_sql(
-            pathlib.Path(__file__)
-            .parent.joinpath("create_cities_table.sql")
-            .read_text()
+            pathlib.Path(__file__).parent.joinpath("003_create.sql").read_text()
         )
 
 
