@@ -1,7 +1,7 @@
 import pathlib
 
+import peewee
 import pytest
-from peewee import IntegrityError, InternalError
 
 
 @pytest.fixture()
@@ -54,7 +54,7 @@ def test_select_with_join(peewee_db, peewee_query):
 def test_insert_error(peewee_db):
 
     with peewee_db.atomic():
-        with pytest.raises(IntegrityError) as excinfo:
+        with pytest.raises(peewee.IntegrityError) as excinfo:
             peewee_db.execute_sql(
                 """
                 INSERT INTO photos
@@ -130,7 +130,7 @@ def test_drop_photos(peewee_db, peewee_query):
 def test_drop_users_cannot_be_done(peewee_db):
 
     with peewee_db.atomic():
-        with pytest.raises(InternalError) as excinfo:
+        with pytest.raises(peewee.InternalError) as excinfo:
             peewee_db.execute_sql(
                 """
                 DROP TABLE users
