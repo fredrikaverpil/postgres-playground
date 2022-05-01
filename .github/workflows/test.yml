@@ -8,17 +8,6 @@ on:
       - master
 
 jobs:
-  # compose:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - run: docker compose build
-  #     - run: docker compose up postgres --detach
-  #     # temporary; sleep until db comes around
-  #     - run: /usr/bin/bash -c "sleep 10"
-  #     - run: docker compose run --rm pytest
-  #     - run: docker compose down --volumes --remove-orphans
-
   pytest:
     strategy:
       fail-fast: false
@@ -46,5 +35,5 @@ jobs:
           pipx-version: "1.0"
       - run: pipx install poetry==${{ matrix.poetry-version }}
       - run: poetry install --no-dev
-      - run: poetry run pytest -rxXs
+      - run: poetry run pytest -vv -rxXs
       - run: docker compose down --volumes --remove-orphans
