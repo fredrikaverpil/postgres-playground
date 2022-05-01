@@ -46,3 +46,5 @@ def test_peewee_create_tables(peewee_db):
 
     print("set_breakpoint_here")  # <--- breakpoint on this line and inspect db
 ```
+
+Then connect to `localhost` on port `5400`.
