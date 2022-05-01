@@ -1,4 +1,4 @@
-name: "Close stale issues and PR"
+name: stale
 # https://github.com/actions/stale
 
 on:
