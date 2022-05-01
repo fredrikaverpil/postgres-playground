@@ -22,9 +22,12 @@ Run db in container and pytest locally:
 poetry install
 docker compose up postgres --detach
 poetry run pytest
+docker compose down --volumes --remove-orphans
 ```
 
 ## Debug
+
+### Inspect database
 
 To inspect the database while writing/running tests, set a breakpoint
 before the test completes. Example:
@@ -32,12 +35,11 @@ before the test completes. Example:
 ```python
 def test_peewee_create_tables(peewee_db):
     sql = """
-    CREATE TABLE Persons (
-        PersonID int,
-        LastName varchar(255),
-        FirstName varchar(255),
-        Address varchar(255),
-        City varchar(255)
+    CREATE TABLE cities (
+        name VARCHAR(50),
+        country VARCHAR(50),
+        population INTEGER,
+        area INTEGER
     );
     """
 
@@ -48,3 +50,9 @@ def test_peewee_create_tables(peewee_db):
 ```
 
 Then connect to `localhost` on port `5400`.
+
+### Fix SQL linting
+
+```bash
+sqlfluff fix --dialect postgres tests/**/*.sql
+```
