@@ -215,18 +215,6 @@ python-versions = ">=3.6.2,<4.0.0"
 flake8-plugin-utils = ">=1.3.2,<2.0.0"
 
 [[package]]
-name = "flake8-sql"
-version = "0.4.1"
-description = "Flake8 plugin that checks SQL code against opinionated style rules"
-category = "dev"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-flake8 = "*"
-sqlparse = "*"
-
-[[package]]
 name = "gitdb"
 version = "4.0.9"
 description = "Git Object Database"
@@ -517,14 +505,6 @@ tqdm = "*"
 typing-extensions = "*"
 
 [[package]]
-name = "sqlparse"
-version = "0.4.2"
-description = "A non-validating SQL parser."
-category = "dev"
-optional = false
-python-versions = ">=3.5"
-
-[[package]]
 name = "stevedore"
 version = "3.5.0"
 description = "Manage dynamic plugins for Python applications"
@@ -600,7 +580,7 @@ python-versions = ">=3.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "dd31dea0ac3b84cc287c309b06b5f6b3d510e619bbbc2357d130034d83ac3b6f"
+content-hash = "86e2db3597325844686d04909db0587697c5bec6bcd88d75167226a4b8af4bdf"
 
 [metadata.files]
 appdirs = [
@@ -691,10 +671,6 @@ flake8-polyfill = [
 flake8-pytest-style = [
     {file = "flake8-pytest-style-1.6.0.tar.gz", hash = "sha256:c1175713e9e11b78cd1a035ed0bca0d1e41d09c4af329a952750b61d4194ddac"},
     {file = "flake8_pytest_style-1.6.0-py3-none-any.whl", hash = "sha256:5fedb371a950e9fe0e0e6bfc854be7d99151271208f34cd2cc517681ece27780"},
-]
-flake8-sql = [
-    {file = "flake8-SQL-0.4.1.tar.gz", hash = "sha256:a8cdd689a5549c6ec73b4478aae152d5e3199270d23a371653f260f7a0e9dedd"},
-    {file = "flake8_SQL-0.4.1-py2.py3-none-any.whl", hash = "sha256:25cd0485ba5feb5b1abfdd0c5b607e014300bcc3fa2a416a18cf62ecdbaaea96"},
 ]
 gitdb = [
     {file = "gitdb-4.0.9-py3-none-any.whl", hash = "sha256:8033ad4e853066ba6ca92050b9df2f89301b8fc8bf7e9324d412a63f8bf1a8fd"},
@@ -1018,10 +994,6 @@ smmap = [
 sqlfluff = [
     {file = "sqlfluff-0.13.0-py3-none-any.whl", hash = "sha256:90297b7ea28bf0eec425b5a4a3b081374e9c35b44e8a95a9c52ef798e3a83bec"},
     {file = "sqlfluff-0.13.0.tar.gz", hash = "sha256:1bbeba677b1e16515494cc112d8e501a46bd68a6b3ff6835369f44c7dadfc324"},
-]
-sqlparse = [
-    {file = "sqlparse-0.4.2-py3-none-any.whl", hash = "sha256:48719e356bb8b42991bdbb1e8b83223757b93789c00910a616a071910ca4a64d"},
-    {file = "sqlparse-0.4.2.tar.gz", hash = "sha256:0c00730c74263a94e5a9919ade150dfc3b19c574389985446148402998287dae"},
 ]
 stevedore = [
     {file = "stevedore-3.5.0-py3-none-any.whl", hash = "sha256:a547de73308fd7e90075bb4d301405bebf705292fa90a90fc3bcf9133f58616c"},
