@@ -8,7 +8,7 @@ DB = os.environ.get(
 )
 
 
-@pytest.fixture
+@pytest.fixture()
 def peewee_db():
     # https://docs.peewee-orm.com/en/latest/peewee/database.html
 
