@@ -1,0 +1,50 @@
+name: test
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  # compose:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - run: docker compose build
+  #     - run: docker compose up postgres --detach
+  #     # temporary; sleep until db comes around
+  #     - run: /usr/bin/bash -c "sleep 10"
+  #     - run: docker compose run --rm pytest
+  #     - run: docker compose down --volumes --remove-orphans
+
+  pytest:
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10"]
+        poetry-version: ["1.1.13"]
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - run: docker compose up postgres --detach
+      # temporary; sleep until db comes around
+      - run: /usr/bin/bash -c "sleep 10"
+      - uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/pypoetry/virtualenvs
+            ~/.cache/pip
+          key: prod-${{ matrix.os }}-py-${{ matrix.python-version }}-poetry-${{ matrix.poetry-version }}-${{ hashFiles('poetry.lock') }}
+      - uses: fredrikaverpil/setup-pipx@v1.3
+        with:
+          pipx-version: "1.0"
+      - run: pipx install poetry==${{ matrix.poetry-version }}
+      - run: poetry install --no-dev
+      - run: poetry run pytest -rxXs
+      - run: docker compose down --volumes --remove-orphans
