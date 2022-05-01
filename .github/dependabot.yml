@@ -1,0 +1,12 @@
+version: 2
+
+updates:
+  - package-ecosystem: "pip"
+    insecure-external-code-execution: allow
+    directory: "/"
+    registries: "*"
+    schedule:
+      interval: "daily"
+    allow:
+      - dependency-name: "*"
+        dependency-type: all

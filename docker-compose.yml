@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:10.3
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=postgres
+    volumes:
+      - /var/lib/postgresql/data
+    ports:
+      - "5400:5432"
+
+  pytest:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DB_CONN_POSTGRES: postgres://postgres:secret@postgres:5432/postgres
+    volumes:
+      - ./tests:/opt/app/tests
+    command: pytest -rxXs
+    entrypoint: ''
+    depends_on:
+      - postgres
