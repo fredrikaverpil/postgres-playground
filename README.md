@@ -19,8 +19,9 @@ docker compose down --volumes --remove-orphans
 Run db in container and pytest locally:
 
 ```bash
+poetry install
 docker compose up postgres --detach
-pytest
+poetry run pytest
 ```
 
 ## Debug
