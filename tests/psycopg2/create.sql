@@ -1,0 +1,7 @@
+CREATE TABLE persons (
+    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    address VARCHAR(255),
+    city VARCHAR(255)
+);
