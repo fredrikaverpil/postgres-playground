@@ -1,15 +1,14 @@
 import pathlib
 
 
-def test_export_data(peewee_db, peewee_query):
+def test_export_data(psycopg2_cursor, psycopg2_query):
 
-    with peewee_db.atomic():
-        peewee_db.execute_sql(
-            pathlib.Path(__file__).parent.joinpath("create_and_insert.sql").read_text(),
-        )
+    psycopg2_cursor.execute(
+        pathlib.Path(__file__).parent.joinpath("create_and_insert.sql").read_text(),
+    )
 
     sql = pathlib.Path(__file__).parent.joinpath("export.sql").read_text()
-    columns, rows = peewee_query(peewee_db, sql)
+    columns, rows = psycopg2_query(psycopg2_cursor, sql)
 
     assert columns == ["json_agg"]
     assert rows == [

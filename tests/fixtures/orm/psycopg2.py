@@ -47,8 +47,8 @@ def psycopg2_cursor():
 
 @pytest.fixture()
 def psycopg2_query():
-    def _psycopg2_query(cursor, query):
-        cursor.execute(query)
+    def _psycopg2_query(cursor, sql, sql_params=None):
+        cursor.execute(sql, sql_params)
         columns = [field_md[0] for field_md in cursor.description]
         rows = cursor.fetchall()
         return columns, rows
