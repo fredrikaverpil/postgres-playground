@@ -36,7 +36,7 @@ def test_comparison_operator(peewee_db, peewee_query):
 
     columns, rows = peewee_query(
         db=peewee_db,
-        query=pathlib.Path(__file__).parent.joinpath("013a_select.sql").read_text(),
+        sql=pathlib.Path(__file__).parent.joinpath("013a_select.sql").read_text(),
     )
 
     assert columns == expected_columns
@@ -50,7 +50,7 @@ def test_calculation_in_where(peewee_db, peewee_query):
 
     columns, rows = peewee_query(
         db=peewee_db,
-        query=pathlib.Path(__file__).parent.joinpath("013b_select.sql").read_text(),
+        sql=pathlib.Path(__file__).parent.joinpath("013b_select.sql").read_text(),
     )
 
     assert columns == expected_columns
@@ -74,7 +74,7 @@ def test_update(peewee_db, peewee_query):
 
     columns, rows = peewee_query(
         db=peewee_db,
-        query="SELECT * FROM cities",
+        sql="SELECT * FROM cities",
     )
 
     assert columns == expected_columns
@@ -97,7 +97,7 @@ def test_delete(peewee_db, peewee_query):
 
     columns, rows = peewee_query(
         db=peewee_db,
-        query="SELECT * FROM cities",
+        sql="SELECT * FROM cities",
     )
 
     assert columns == expected_columns
