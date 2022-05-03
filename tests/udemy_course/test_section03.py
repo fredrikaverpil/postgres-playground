@@ -43,7 +43,7 @@ def test_select_with_join(peewee_db, peewee_query):
 
     columns, rows = peewee_query(
         db=peewee_db,
-        query=pathlib.Path(__file__).parent.joinpath("028e_select.sql").read_text(),
+        sql=pathlib.Path(__file__).parent.joinpath("028e_select.sql").read_text(),
     )
 
     assert columns == expected_columns
@@ -93,7 +93,7 @@ def test_insert_with_user_null(peewee_db, peewee_query):
 
     columns, rows = peewee_query(
         db=peewee_db,
-        query="SELECT * from photos",
+        sql="SELECT * from photos",
     )
 
     assert columns == expected_columns
@@ -119,7 +119,7 @@ def test_drop_photos(peewee_db, peewee_query):
 
     columns, rows = peewee_query(
         db=peewee_db,
-        query="SELECT * from users",
+        sql="SELECT * from users",
     )
 
     assert columns == expected_columns
@@ -164,12 +164,12 @@ def test_drop_user_and_cascade(peewee_db, peewee_query):
 
     columns_users, rows_users = peewee_query(
         db=peewee_db,
-        query="SELECT * from users",
+        sql="SELECT * from users",
     )
 
     columns_photos, rows_photos = peewee_query(
         db=peewee_db,
-        query="SELECT * from photos",
+        sql="SELECT * from photos",
     )
 
     assert columns_users == expected_users_columns
@@ -213,7 +213,7 @@ def test_drop_user_without_cascade_but_with_null(peewee_db, peewee_query):
 
     columns_photos, rows_photos = peewee_query(
         db=peewee_db,
-        query="SELECT * from photos",
+        sql="SELECT * from photos",
     )
 
     assert columns_photos == expected_photos_columns

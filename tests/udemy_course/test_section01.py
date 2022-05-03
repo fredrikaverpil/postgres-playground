@@ -54,7 +54,7 @@ def test_calculation(peewee_db, peewee_query):
         )
     columns, rows = peewee_query(
         db=peewee_db,
-        query="""SELECT name, population / area AS population_density FROM cities""",
+        sql="""SELECT name, population / area AS population_density FROM cities""",
     )
 
     expected_columns = ["name", "population_density"]
@@ -85,14 +85,14 @@ def test_string_operators_and_functions(peewee_db, peewee_query):
         )
     columns, rows = peewee_query(
         db=peewee_db,
-        query="""
+        sql="""
         SELECT name || ', ' || country AS "location"
           FROM cities
         """,
     )
     columns2, rows2 = peewee_query(
         db=peewee_db,
-        query="""
+        sql="""
         SELECT CONCAT(name, ', ', country) AS "location"
           FROM cities
         """,
