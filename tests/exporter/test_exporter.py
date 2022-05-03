@@ -1,7 +1,7 @@
 import pathlib
 
 
-def test_export_data(psycopg2_cursor, psycopg2_query):
+def test_export_json_data(psycopg2_cursor, psycopg2_query):
     limit = 3
 
     psycopg2_cursor.execute(
