@@ -3,8 +3,8 @@ WITH t (url, username) AS (
         users.username
     FROM photos
         JOIN users on photos.user_id = users.id
-    LIMIT 3
+    LIMIT %s
 )
 SELECT json_agg(t)
 FROM t
-LIMIT 3
+LIMIT %s
