@@ -1,7 +1,6 @@
-WITH t (url, username, user_id) AS (
+WITH t (url, username) AS (
     SELECT photos.url,
-        users.username,
-        photos.user_id
+        users.username
     FROM photos
         JOIN users on photos.user_id = users.id
 )
