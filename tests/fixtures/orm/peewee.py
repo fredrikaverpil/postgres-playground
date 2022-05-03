@@ -32,8 +32,8 @@ def peewee_db():
 
 @pytest.fixture()
 def peewee_query():
-    def _peewee_query(db, query):
-        cursor = db.execute_sql(query)
+    def _peewee_query(db, sql, sql_params=None):
+        cursor = db.execute_sql(sql, sql_params)
 
         columns = [field_md[0] for field_md in cursor.description]
         rows = cursor.fetchall()
