@@ -21,7 +21,6 @@ flake8-builtins = "^1.5.3"
 flake8-pytest-style = "^1.6.0"
 flake8-isort = "^4.1.1"
 mypy = "^0.950"
-sqlfluff = "^0.13.0"
 
 [tool.pytest.ini_options]
 testpaths = "tests"

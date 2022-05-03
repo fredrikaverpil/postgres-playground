@@ -53,8 +53,15 @@ def test_peewee_create_tables(peewee_db):
 
 Then connect to `localhost` on port `5400`.
 
-### Fix SQL linting
+### SQL formatting
+
+It's nice to have some sort of formatter/linter. For now,
+I'm using [SQLTools](https://github.com/mtxr/vscode-sqltools)
+in vscode when saving `.sql` files and occasionally
+run [SQLFluff](https://github.com/sqlfluff/sqlfluff).
 
 ```bash
+pipx install sqlfluff
+sqlfluff lint --dialect postgres tests/**/*.sql
 sqlfluff fix --dialect postgres tests/**/*.sql
 ```
