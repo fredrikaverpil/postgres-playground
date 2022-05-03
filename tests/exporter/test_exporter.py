@@ -14,13 +14,9 @@ def test_export_data(psycopg2_cursor, psycopg2_query):
     assert rows == [
         (
             [
-                {"url": "http://36.jpg", "username": "monahan93"},
-                {"url": "http://25.jpg", "username": "monahan93"},
-                {"url": "http://two.jpg", "username": "monahan93"},
-                {"url": "http://754.jpg", "username": "pferrer"},
-                {"url": "http://35.jpg", "username": "si93onis"},
-                {"url": "http://256.jpg", "username": "99stroman"},
                 {"url": "http://one.jpg", "username": "99stroman"},
+                {"url": "http://two.jpg", "username": "monahan93"},
+                {"url": "http://25.jpg", "username": "monahan93"},
             ],
-        ),
+        )
     ]
