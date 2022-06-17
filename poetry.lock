@@ -288,7 +288,7 @@ python-versions = ">=2.6"
 
 [[package]]
 name = "peewee"
-version = "3.14.10"
+version = "3.15.0"
 description = "a little orm"
 category = "main"
 optional = false
@@ -452,7 +452,7 @@ python-versions = ">=3.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "f518d961d5fac69b5b1f51001754cda87945b795ac8d98955144258a2f59f812"
+content-hash = "5a1e7c564e21acc8923e3c9ee3871ac9cd382e0eed60ae85c328b74839416ed7"
 
 [metadata.files]
 atomicwrites = [
@@ -594,7 +594,7 @@ pbr = [
     {file = "pbr-5.9.0.tar.gz", hash = "sha256:e8dca2f4b43560edef58813969f52a56cef023146cbb8931626db80e6c1c4308"},
 ]
 peewee = [
-    {file = "peewee-3.14.10.tar.gz", hash = "sha256:23271422b332c82d30c92597dee905ee831b56c6d99c33e05901e6891c75fe15"},
+    {file = "peewee-3.15.0.tar.gz", hash = "sha256:48eac70be812ac84daa5400fb8e7b545e0c83adcfa05c8e2a8612f9ced4da495"},
 ]
 platformdirs = [
     {file = "platformdirs-2.5.2-py3-none-any.whl", hash = "sha256:027d8e83a2d7de06bbac4e5ef7e023c02b863d7ea5d079477e722bb41ab25788"},
