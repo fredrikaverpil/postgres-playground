@@ -15,7 +15,7 @@ peewee = "^3.15.3"
 [tool.poetry.dev-dependencies]
 black = "^22.8.0"
 flake8 = "^4.0.1"
-flake8-bugbear = "^22.8.23"
+flake8-bugbear = "^22.9.11"
 flake8-bandit = "^3.0.0"
 flake8-builtins = "^1.5.3"
 flake8-pytest-style = "^1.6.0"
