@@ -1,6 +1,11 @@
 version: 2
 
 updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    registries: "*"
+    schedule:
+      interval: "weekly"
   - package-ecosystem: "pip"
     insecure-external-code-execution: allow
     directory: "/"
