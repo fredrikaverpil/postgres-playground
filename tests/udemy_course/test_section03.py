@@ -1,7 +1,8 @@
 import pathlib
 
-import peewee
 import pytest
+
+import peewee
 
 
 @pytest.fixture()
