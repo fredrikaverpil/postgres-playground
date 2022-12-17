@@ -13,7 +13,6 @@ def peewee_db():
     # https://docs.peewee-orm.com/en/latest/peewee/database.html
 
     db = connect(DB)
-    # db.connect()
 
     yield db
 

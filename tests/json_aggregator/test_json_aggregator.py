@@ -16,7 +16,7 @@ def test_export_json_data(psycopg2_cursor, psycopg2_query, tmp_path):
     json_filepath = tmp_path / "export.json"
     with open(json_filepath, "w") as outfile:
         json.dump(rows[0][0], outfile)
-    with open(json_filepath, "r") as infile:
+    with open(json_filepath) as infile:
         loaded_json = json.load(infile)
 
     assert columns == ["json_agg"]

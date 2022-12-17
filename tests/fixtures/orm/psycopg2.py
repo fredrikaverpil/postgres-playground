@@ -2,8 +2,9 @@ import os
 from typing import Callable
 from urllib.parse import urlparse
 
-import psycopg2
 import pytest
+
+import psycopg2
 
 DB = os.environ.get(
     "DB_CONN_POSTGRES", "postgres://postgres:secret@localhost:5400/postgres"
@@ -103,7 +104,7 @@ def psycopg2_conn():
 
 @pytest.fixture()
 def psycopg2_execute(psycopg2_conn) -> Callable:
-    def _(sql, sql_params=None, commit=False):
+    def _(sql, sql_params=None, commit=False):  # noqa: FBT002
         cursor = psycopg2_conn.cursor()
         cursor.execute(sql, sql_params)
         if commit:
