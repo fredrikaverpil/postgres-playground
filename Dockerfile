@@ -1,4 +1,4 @@
-FROM python:3.10-slim-bullseye
+FROM python:3.11-slim-bullseye
 
 RUN apt-get update && apt-get -y install libpq-dev
 RUN apt-get -y install build-essential
