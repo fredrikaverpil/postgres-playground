@@ -16,8 +16,7 @@
       "matchPackagePatterns": ["*"],
       "matchUpdateTypes": ["major", "minor", "patch"],
       "matchManagers": ["poetry"],
-      "depTypes": ["main"],
-      "schedule": ["every weekend"]
+      "depTypes": ["main"]
     }
   ]
 }
