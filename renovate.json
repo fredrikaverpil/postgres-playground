@@ -2,13 +2,21 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base"],
 
-  // Group together all updates
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true
+  },
+
   "packageRules": [
     {
+      "enabled": true,
+      "automerge": true,
       "groupName": "all dependencies",
       "groupSlug": "all-major-minor-patch",
       "matchPackagePatterns": ["*"],
       "matchUpdateTypes": ["major", "minor", "patch"],
+      "matchManagers": ["poetry"],
+      "depTypes": ["main"],
       "schedule": ["every weekend"]
     }
   ]
