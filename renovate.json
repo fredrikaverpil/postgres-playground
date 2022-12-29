@@ -17,6 +17,11 @@
       "matchUpdateTypes": ["major", "minor", "patch"],
       "matchManagers": ["poetry"],
       "depTypes": ["main"]
+    },
+    {
+      "matchManagers": ["github-actions", "pyenv"],
+      "enabled": true,
+      "automerge": true
     }
   ]
 }
