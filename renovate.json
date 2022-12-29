@@ -19,7 +19,7 @@
       "depTypes": ["main"]
     },
     {
-      "matchManagers": ["github-actions", "pyenv"],
+      "matchManagers": ["github-actions", "pyenv", "dockerfile"],
       "enabled": true,
       "automerge": true
     }
