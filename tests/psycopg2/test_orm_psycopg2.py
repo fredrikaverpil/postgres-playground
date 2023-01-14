@@ -1,7 +1,7 @@
-import pathlib
+import pathlib  # noqa: D100
 
 
-def test_psycopg2_cursor(psycopg2_cursor):
+def test_psycopg2_cursor(psycopg2_cursor):  # noqa: ANN001, ANN201, D103
     psycopg2_cursor.execute(
         pathlib.Path(__file__).parent.joinpath("create.sql").read_text(),
     )
@@ -17,7 +17,7 @@ def test_psycopg2_cursor(psycopg2_cursor):
     assert rows[0] == (1, "John", "Doe", None, None)
 
 
-def test_psycopg2_query(psycopg2_cursor, psycopg2_query):
+def test_psycopg2_query(psycopg2_cursor, psycopg2_query):  # noqa: ANN001, ANN201, D103
     psycopg2_cursor.execute(
         pathlib.Path(__file__).parent.joinpath("create.sql").read_text(),
     )

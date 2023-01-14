@@ -1,7 +1,7 @@
-import pathlib
+import pathlib  # noqa: D100
 
 
-def test_peewee_create_table(peewee_db):
+def test_peewee_create_table(peewee_db):  # noqa: ANN001, ANN201, D103
     with peewee_db.atomic():
         peewee_db.execute_sql(
             pathlib.Path(__file__).parent.joinpath("create.sql").read_text()
