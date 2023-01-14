@@ -1,8 +1,10 @@
-import json
+import json  # noqa: D100
 import pathlib
 
 
-def test_export_json_data(psycopg2_cursor, psycopg2_query, tmp_path):
+def test_export_json_data(  # noqa: ANN201, D103
+    psycopg2_cursor, psycopg2_query, tmp_path  # noqa: ANN001
+):  # noqa: ANN001, ANN201, D103, RUF100
     limit = 3
 
     psycopg2_cursor.execute(

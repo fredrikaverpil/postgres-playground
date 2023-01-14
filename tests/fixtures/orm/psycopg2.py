@@ -1,4 +1,4 @@
-import os
+import os  # noqa: D100
 from typing import Callable
 from urllib.parse import urlparse
 
@@ -12,13 +12,13 @@ DB = os.environ.get(
 
 
 @pytest.fixture()
-def psycopg2_cursor():
+def psycopg2_cursor():  # noqa: ANN201
     """Return psycopg2 cursor.
 
     Note:
+    ----
         Use psycopg2_conn instead.
-    """
-
+    """  # noqa: D213
     uri = urlparse(DB)
 
     username = uri.username
@@ -52,14 +52,15 @@ def psycopg2_cursor():
 
 
 @pytest.fixture()
-def psycopg2_query():
+def psycopg2_query():  # noqa: ANN201
     """Return rows, columns from a query.
 
     Note:
+    ----
         Use psycopg2_execute instead.
-    """
+    """  # noqa: D213
 
-    def _(cursor, sql, sql_params=None):
+    def _(cursor, sql, sql_params=None):  # noqa: ANN001, ANN202
         cursor.execute(sql, sql_params)
         columns = [field_md[0] for field_md in cursor.description]
         rows = cursor.fetchall()
@@ -69,7 +70,7 @@ def psycopg2_query():
 
 
 @pytest.fixture()
-def psycopg2_conn():
+def psycopg2_conn():  # noqa: ANN201, D103
 
     uri = urlparse(DB)
 
@@ -103,8 +104,8 @@ def psycopg2_conn():
 
 
 @pytest.fixture()
-def psycopg2_execute(psycopg2_conn) -> Callable:
-    def _(sql, sql_params=None, commit=False):  # noqa: FBT002
+def psycopg2_execute(psycopg2_conn) -> Callable:  # noqa: ANN001, D103
+    def _(sql, sql_params=None, commit=False):  # noqa: ANN001, ANN202, FBT002
         cursor = psycopg2_conn.cursor()
         cursor.execute(sql, sql_params)
         if commit:
@@ -115,8 +116,8 @@ def psycopg2_execute(psycopg2_conn) -> Callable:
 
 
 @pytest.fixture()
-def psycopg2_columns() -> Callable:
-    def _(cursor) -> list[str]:
+def psycopg2_columns() -> Callable:  # noqa: D103
+    def _(cursor) -> list[str]:  # noqa: ANN001
         return [field_md[0] for field_md in cursor.description]
 
     return _

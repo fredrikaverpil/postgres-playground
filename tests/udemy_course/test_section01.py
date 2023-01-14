@@ -1,10 +1,10 @@
-import pathlib
+import pathlib  # noqa: D100
 
 import pytest
 
 
 @pytest.fixture()
-def _create_cities_table(peewee_db):
+def _create_cities_table(peewee_db):  # noqa: ANN001, ANN202
     with peewee_db.atomic():
         peewee_db.execute_sql(
             pathlib.Path(__file__).parent.joinpath("003_create.sql").read_text()
@@ -12,7 +12,7 @@ def _create_cities_table(peewee_db):
 
 
 @pytest.mark.usefixtures("_create_cities_table")
-def test_insert(peewee_db):
+def test_insert(peewee_db):  # noqa: ANN001, ANN201, D103
     expected = [
         ("Tokyo", "Japan", 38505000, 8223),
         ("Delhi", "India", 28125000, 2240),
@@ -35,7 +35,7 @@ def test_insert(peewee_db):
 
 
 @pytest.mark.usefixtures("_create_cities_table")
-def test_calculation(peewee_db, peewee_query):
+def test_calculation(peewee_db, peewee_query):  # noqa: ANN001, ANN201
     """Test calculation.
 
     Available operators:
@@ -47,7 +47,7 @@ def test_calculation(peewee_db, peewee_query):
     - Square root: |/
     - Absolute value: @
     - Remainder: %
-    """
+    """  # noqa: D213
     with peewee_db.atomic():
         peewee_db.execute_sql(
             pathlib.Path(__file__).parent.joinpath("005_insert.sql").read_text()
@@ -69,7 +69,9 @@ def test_calculation(peewee_db, peewee_query):
 
 
 @pytest.mark.usefixtures("_create_cities_table")
-def test_string_operators_and_functions(peewee_db, peewee_query):
+def test_string_operators_and_functions(  # noqa: ANN201
+    peewee_db, peewee_query  # noqa: ANN001
+):  # noqa: ANN001, ANN201, RUF100
     """Test calculation.
 
     Available operators:
@@ -78,7 +80,7 @@ def test_string_operators_and_functions(peewee_db, peewee_query):
     - Give lower case string: LOWER()
     - Give number of characters in string: LENGTH()
     - Give upper case string: UPPER()
-    """
+    """  # noqa: D213
     with peewee_db.atomic():
         peewee_db.execute_sql(
             pathlib.Path(__file__).parent.joinpath("005_insert.sql").read_text()

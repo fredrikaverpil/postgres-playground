@@ -1,4 +1,4 @@
-import os
+import os  # noqa: D100
 
 import pytest
 from playhouse.db_url import connect
@@ -9,7 +9,7 @@ DB = os.environ.get(
 
 
 @pytest.fixture()
-def peewee_db():
+def peewee_db():  # noqa: ANN201, D103
     # https://docs.peewee-orm.com/en/latest/peewee/database.html
 
     db = connect(DB)
@@ -30,8 +30,8 @@ def peewee_db():
 
 
 @pytest.fixture()
-def peewee_query():
-    def _peewee_query(db, sql, sql_params=None):
+def peewee_query():  # noqa: ANN201, D103
+    def _peewee_query(db, sql, sql_params=None):  # noqa: ANN001, ANN202
         cursor = db.execute_sql(sql, sql_params)
 
         columns = [field_md[0] for field_md in cursor.description]
