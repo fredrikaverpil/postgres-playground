@@ -12,3 +12,10 @@ updates:
     allow:
       - dependency-name: "*"
         dependency-type: all
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    groups:
+      dev-dependencies:
+        patterns:
+          - "*"

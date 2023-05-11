@@ -36,6 +36,7 @@ def peewee_query():  # noqa: ANN201, D103
 
         columns = [field_md[0] for field_md in cursor.description]
         rows = cursor.fetchall()
+
         return columns, rows
 
     return _peewee_query
