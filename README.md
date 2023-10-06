@@ -5,6 +5,9 @@
 This is a personal testing playground of raw SQL queries and ORM queries for PostgreSQL written in Python,
 leveraging the Pytest framework. This allows for quick iteration and debugging when trying new stuff out.
 
+Related:
+ - https://github.com/fredrikaverpil/sqlc-python-demo
+
 # Quickstart
 
 ## Run
