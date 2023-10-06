@@ -1,15 +1,16 @@
-import os  # noqa: D100
+import os
 
 import pytest
 from playhouse.db_url import connect
 
 DB = os.environ.get(
-    "DB_CONN_POSTGRES", "postgres://postgres:secret@localhost:5400/postgres"
+    "DB_CONN_POSTGRES",
+    "postgres://postgres:secret@localhost:5400/postgres",
 )
 
 
 @pytest.fixture()
-def peewee_db():  # noqa: ANN201, D103
+def peewee_db():  # noqa: ANN201
     # https://docs.peewee-orm.com/en/latest/peewee/database.html
 
     db = connect(DB)
@@ -30,7 +31,7 @@ def peewee_db():  # noqa: ANN201, D103
 
 
 @pytest.fixture()
-def peewee_query():  # noqa: ANN201, D103
+def peewee_query():  # noqa: ANN201
     def _peewee_query(db, sql, sql_params=None):  # noqa: ANN001, ANN202
         cursor = db.execute_sql(sql, sql_params)
 

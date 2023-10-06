@@ -1,4 +1,4 @@
-import pathlib  # noqa: D100
+import pathlib
 
 import pytest
 
@@ -9,11 +9,11 @@ import peewee
 def _create_users_table(peewee_db):  # noqa: ANN001, ANN202
     with peewee_db.atomic():
         peewee_db.execute_sql(
-            pathlib.Path(__file__).parent.joinpath("028a_create.sql").read_text()
+            pathlib.Path(__file__).parent.joinpath("028a_create.sql").read_text(),
         )
     with peewee_db.atomic():
         peewee_db.execute_sql(
-            pathlib.Path(__file__).parent.joinpath("028b_insert.sql").read_text()
+            pathlib.Path(__file__).parent.joinpath("028b_insert.sql").read_text(),
         )
 
 
@@ -21,16 +21,16 @@ def _create_users_table(peewee_db):  # noqa: ANN001, ANN202
 def _create_photos_table(peewee_db):  # noqa: ANN001, ANN202
     with peewee_db.atomic():
         peewee_db.execute_sql(
-            pathlib.Path(__file__).parent.joinpath("028c_create.sql").read_text()
+            pathlib.Path(__file__).parent.joinpath("028c_create.sql").read_text(),
         )
     with peewee_db.atomic():
         peewee_db.execute_sql(
-            pathlib.Path(__file__).parent.joinpath("028d_insert.sql").read_text()
+            pathlib.Path(__file__).parent.joinpath("028d_insert.sql").read_text(),
         )
 
 
 @pytest.mark.usefixtures("_create_users_table", "_create_photos_table")
-def test_select_with_join(peewee_db, peewee_query):  # noqa: ANN001, ANN201, D103
+def test_select_with_join(peewee_db, peewee_query):  # noqa: ANN001, ANN201
     expected_columns = ["url", "username"]
     expected_rows = [
         ("http://36.jpg", "monahan93"),
@@ -52,8 +52,7 @@ def test_select_with_join(peewee_db, peewee_query):  # noqa: ANN001, ANN201, D10
 
 
 @pytest.mark.usefixtures("_create_users_table", "_create_photos_table")
-def test_insert_error(peewee_db):  # noqa: ANN001, ANN201, D103
-
+def test_insert_error(peewee_db):  # noqa: ANN001, ANN201
     key_that_does_not_exist = 9999
 
     with peewee_db.atomic():  # noqa: SIM117
@@ -64,7 +63,7 @@ def test_insert_error(peewee_db):  # noqa: ANN001, ANN201, D103
                     (url, user_id)
                 VALUES
                     ('http://jpg', {key_that_does_not_exist});
-                """
+                """,
             )
 
     assert (
@@ -74,7 +73,7 @@ def test_insert_error(peewee_db):  # noqa: ANN001, ANN201, D103
 
 
 @pytest.mark.usefixtures("_create_users_table", "_create_photos_table")
-def test_insert_with_user_null(peewee_db, peewee_query):  # noqa: ANN001, ANN201, D103
+def test_insert_with_user_null(peewee_db, peewee_query):  # noqa: ANN001, ANN201
     expected_columns = ["id", "url", "user_id"]
     expected_rows = [
         (1, "http://one.jpg", 4),
@@ -94,7 +93,7 @@ def test_insert_with_user_null(peewee_db, peewee_query):  # noqa: ANN001, ANN201
                 (url, user_id)
             VALUES
                 ('http://jpg', NULL);
-            """
+            """,
         )
 
     columns, rows = peewee_query(
@@ -107,7 +106,7 @@ def test_insert_with_user_null(peewee_db, peewee_query):  # noqa: ANN001, ANN201
 
 
 @pytest.mark.usefixtures("_create_users_table", "_create_photos_table")
-def test_drop_photos(peewee_db, peewee_query):  # noqa: ANN001, ANN201, D103
+def test_drop_photos(peewee_db, peewee_query):  # noqa: ANN001, ANN201
     expected_columns = ["id", "username"]
     expected_rows = [
         (1, "monahan93"),
@@ -120,7 +119,7 @@ def test_drop_photos(peewee_db, peewee_query):  # noqa: ANN001, ANN201, D103
         peewee_db.execute_sql(
             """
             DROP TABLE photos
-            """
+            """,
         )
 
     columns, rows = peewee_query(
@@ -133,8 +132,7 @@ def test_drop_photos(peewee_db, peewee_query):  # noqa: ANN001, ANN201, D103
 
 
 @pytest.mark.usefixtures("_create_users_table", "_create_photos_table")
-def test_drop_users_cannot_be_done(peewee_db):  # noqa: ANN001, ANN201, D103
-
+def test_drop_users_cannot_be_done(peewee_db):  # noqa: ANN001, ANN201
     expected_string = "cannot drop table users because other objects depend on it"
 
     with peewee_db.atomic():  # noqa: SIM117
@@ -142,14 +140,14 @@ def test_drop_users_cannot_be_done(peewee_db):  # noqa: ANN001, ANN201, D103
             peewee_db.execute_sql(
                 """
                 DROP TABLE users
-                """
+                """,
             )
 
     assert expected_string in str(excinfo.value)
 
 
 @pytest.mark.usefixtures("_create_users_table", "_create_photos_table")
-def test_drop_user_and_cascade(peewee_db, peewee_query):  # noqa: ANN001, ANN201, D103
+def test_drop_user_and_cascade(peewee_db, peewee_query):  # noqa: ANN001, ANN201
     expected_users_columns = ["id", "username"]
     expected_users_rows = [(2, "pferrer"), (3, "si93onis"), (4, "99stroman")]
     expected_photos_columns = ["id", "url", "user_id"]
@@ -165,7 +163,7 @@ def test_drop_user_and_cascade(peewee_db, peewee_query):  # noqa: ANN001, ANN201
             """
             DELETE FROM users
             WHERE id = 1;
-            """
+            """,
         )
 
     columns_users, rows_users = peewee_query(
@@ -186,10 +184,10 @@ def test_drop_user_and_cascade(peewee_db, peewee_query):  # noqa: ANN001, ANN201
 
 
 @pytest.mark.usefixtures("_create_users_table")
-def test_drop_user_without_cascade_but_with_null(  # noqa: ANN201, D103
-    peewee_db, peewee_query  # noqa: ANN001
+def test_drop_user_without_cascade_but_with_null(  # noqa: ANN201
+    peewee_db,  # noqa: ANN001
+    peewee_query,  # noqa: ANN001
 ):  # noqa: ANN001, ANN201, D103, RUF100
-
     expected_photos_columns = ["id", "url", "user_id"]
     expected_photos_rows = [
         (2, "http:/754.jpg", 2),
@@ -216,7 +214,7 @@ def test_drop_user_without_cascade_but_with_null(  # noqa: ANN201, D103
 
             DELETE FROM users
             WHERE id = 4;
-            """
+            """,
         )
 
     columns_photos, rows_photos = peewee_query(

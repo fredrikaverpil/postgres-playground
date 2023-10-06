@@ -1,11 +1,11 @@
-import os  # noqa: D100
+import os
 import sys
 from glob import glob
 
 sys.path.append(".")
 
 
-def refactor(string: str) -> str:  # noqa: D103
+def refactor(string: str) -> str:
     return string.replace(os.path.sep, ".").replace(".py", "")
 
 

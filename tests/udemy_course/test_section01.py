@@ -1,4 +1,4 @@
-import pathlib  # noqa: D100
+import pathlib
 
 import pytest
 
@@ -7,12 +7,12 @@ import pytest
 def _create_cities_table(peewee_db):  # noqa: ANN001, ANN202
     with peewee_db.atomic():
         peewee_db.execute_sql(
-            pathlib.Path(__file__).parent.joinpath("003_create.sql").read_text()
+            pathlib.Path(__file__).parent.joinpath("003_create.sql").read_text(),
         )
 
 
 @pytest.mark.usefixtures("_create_cities_table")
-def test_insert(peewee_db):  # noqa: ANN001, ANN201, D103
+def test_insert(peewee_db):  # noqa: ANN001, ANN201
     expected = [
         ("Tokyo", "Japan", 38505000, 8223),
         ("Delhi", "India", 28125000, 2240),
@@ -22,7 +22,7 @@ def test_insert(peewee_db):  # noqa: ANN001, ANN201, D103
 
     with peewee_db.atomic():
         peewee_db.execute_sql(
-            pathlib.Path(__file__).parent.joinpath("005_insert.sql").read_text()
+            pathlib.Path(__file__).parent.joinpath("005_insert.sql").read_text(),
         )
 
     cursor = peewee_db.execute_sql("SELECT * FROM cities")
@@ -47,10 +47,10 @@ def test_calculation(peewee_db, peewee_query):  # noqa: ANN001, ANN201
     - Square root: |/
     - Absolute value: @
     - Remainder: %
-    """  # noqa: D213
+    """
     with peewee_db.atomic():
         peewee_db.execute_sql(
-            pathlib.Path(__file__).parent.joinpath("005_insert.sql").read_text()
+            pathlib.Path(__file__).parent.joinpath("005_insert.sql").read_text(),
         )
     columns, rows = peewee_query(
         db=peewee_db,
@@ -70,7 +70,8 @@ def test_calculation(peewee_db, peewee_query):  # noqa: ANN001, ANN201
 
 @pytest.mark.usefixtures("_create_cities_table")
 def test_string_operators_and_functions(  # noqa: ANN201
-    peewee_db, peewee_query  # noqa: ANN001
+    peewee_db,  # noqa: ANN001
+    peewee_query,  # noqa: ANN001
 ):  # noqa: ANN001, ANN201, RUF100
     """Test calculation.
 
@@ -80,10 +81,10 @@ def test_string_operators_and_functions(  # noqa: ANN201
     - Give lower case string: LOWER()
     - Give number of characters in string: LENGTH()
     - Give upper case string: UPPER()
-    """  # noqa: D213
+    """
     with peewee_db.atomic():
         peewee_db.execute_sql(
-            pathlib.Path(__file__).parent.joinpath("005_insert.sql").read_text()
+            pathlib.Path(__file__).parent.joinpath("005_insert.sql").read_text(),
         )
     columns, rows = peewee_query(
         db=peewee_db,

@@ -1,9 +1,11 @@
-import json  # noqa: D100
+import json
 import pathlib
 
 
-def test_export_json_data(  # noqa: ANN201, D103
-    psycopg2_cursor, psycopg2_query, tmp_path  # noqa: ANN001
+def test_export_json_data(  # noqa: ANN201
+    psycopg2_cursor,  # noqa: ANN001
+    psycopg2_query,  # noqa: ANN001
+    tmp_path,  # noqa: ANN001
 ):  # noqa: ANN001, ANN201, D103, RUF100
     limit = 3
 
@@ -29,6 +31,6 @@ def test_export_json_data(  # noqa: ANN201, D103
                 {"url": "http://two.jpg", "username": "monahan93"},
                 {"url": "http://25.jpg", "username": "monahan93"},
             ],
-        )
+        ),
     ]
     assert rows[0][0] == loaded_json
