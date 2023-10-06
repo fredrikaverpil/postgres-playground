@@ -1,4 +1,4 @@
-import os  # noqa: D100
+import os
 from typing import Callable
 from urllib.parse import urlparse
 
@@ -7,7 +7,8 @@ import pytest
 import psycopg2
 
 DB = os.environ.get(
-    "DB_CONN_POSTGRES", "postgres://postgres:secret@localhost:5400/postgres"
+    "DB_CONN_POSTGRES",
+    "postgres://postgres:secret@localhost:5400/postgres",
 )
 
 
@@ -18,7 +19,7 @@ def psycopg2_cursor():  # noqa: ANN201
     Note:
     ----
         Use psycopg2_conn instead.
-    """  # noqa: D213
+    """
     uri = urlparse(DB)
 
     username = uri.username
@@ -58,7 +59,7 @@ def psycopg2_query():  # noqa: ANN201
     Note:
     ----
         Use psycopg2_execute instead.
-    """  # noqa: D213
+    """
 
     def _(cursor, sql, sql_params=None):  # noqa: ANN001, ANN202
         cursor.execute(sql, sql_params)
@@ -70,8 +71,7 @@ def psycopg2_query():  # noqa: ANN201
 
 
 @pytest.fixture()
-def psycopg2_conn():  # noqa: ANN201, D103
-
+def psycopg2_conn():  # noqa: ANN201
     uri = urlparse(DB)
 
     username = uri.username
@@ -104,7 +104,7 @@ def psycopg2_conn():  # noqa: ANN201, D103
 
 
 @pytest.fixture()
-def psycopg2_execute(psycopg2_conn) -> Callable:  # noqa: ANN001, D103
+def psycopg2_execute(psycopg2_conn) -> Callable:  # noqa: ANN001
     def _(sql, sql_params=None, commit=False):  # noqa: ANN001, ANN202, FBT002
         cursor = psycopg2_conn.cursor()
         cursor.execute(sql, sql_params)
@@ -116,7 +116,7 @@ def psycopg2_execute(psycopg2_conn) -> Callable:  # noqa: ANN001, D103
 
 
 @pytest.fixture()
-def psycopg2_columns() -> Callable:  # noqa: D103
+def psycopg2_columns() -> Callable:
     def _(cursor) -> list[str]:  # noqa: ANN001
         return [field_md[0] for field_md in cursor.description]
 

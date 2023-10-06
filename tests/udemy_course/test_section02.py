@@ -1,4 +1,4 @@
-import pathlib  # noqa: D100
+import pathlib
 
 import pytest
 
@@ -7,11 +7,11 @@ import pytest
 def _create_cities_table(peewee_db):  # noqa: ANN001, ANN202
     with peewee_db.atomic():
         peewee_db.execute_sql(
-            pathlib.Path(__file__).parent.joinpath("003_create.sql").read_text()
+            pathlib.Path(__file__).parent.joinpath("003_create.sql").read_text(),
         )
     with peewee_db.atomic():
         peewee_db.execute_sql(
-            pathlib.Path(__file__).parent.joinpath("005_insert.sql").read_text()
+            pathlib.Path(__file__).parent.joinpath("005_insert.sql").read_text(),
         )
 
 
@@ -30,7 +30,7 @@ def test_comparison_operator(peewee_db, peewee_query):  # noqa: ANN001, ANN201
     - Value not in list: NOT IN
     - Value between two values: BETWEEN
 
-    """  # noqa: D213
+    """
     expected_columns = ["name", "area"]
     expected_rows = [("Tokyo", 8223), ("Shanghai", 4015)]
 
@@ -44,7 +44,7 @@ def test_comparison_operator(peewee_db, peewee_query):  # noqa: ANN001, ANN201
 
 
 @pytest.mark.usefixtures("_create_cities_table")
-def test_calculation_in_where(peewee_db, peewee_query):  # noqa: ANN001, ANN201, D103
+def test_calculation_in_where(peewee_db, peewee_query):  # noqa: ANN001, ANN201
     expected_columns = ["name", "population_density"]
     expected_rows = [("Delhi", 12555), ("Sao Paulo", 6879)]
 
@@ -58,7 +58,7 @@ def test_calculation_in_where(peewee_db, peewee_query):  # noqa: ANN001, ANN201,
 
 
 @pytest.mark.usefixtures("_create_cities_table")
-def test_update(peewee_db, peewee_query):  # noqa: ANN001, ANN201, D103
+def test_update(peewee_db, peewee_query):  # noqa: ANN001, ANN201
     expected_columns = ["name", "country", "population", "area"]
     expected_rows = [
         ("Delhi", "India", 28125000, 2240),
@@ -69,7 +69,7 @@ def test_update(peewee_db, peewee_query):  # noqa: ANN001, ANN201, D103
 
     with peewee_db.atomic():
         peewee_db.execute_sql(
-            pathlib.Path(__file__).parent.joinpath("022_update.sql").read_text()
+            pathlib.Path(__file__).parent.joinpath("022_update.sql").read_text(),
         )
 
     columns, rows = peewee_query(
@@ -82,7 +82,7 @@ def test_update(peewee_db, peewee_query):  # noqa: ANN001, ANN201, D103
 
 
 @pytest.mark.usefixtures("_create_cities_table")
-def test_delete(peewee_db, peewee_query):  # noqa: ANN001, ANN201, D103
+def test_delete(peewee_db, peewee_query):  # noqa: ANN001, ANN201
     expected_columns = ["name", "country", "population", "area"]
     expected_rows = [
         ("Delhi", "India", 28125000, 2240),
@@ -92,7 +92,7 @@ def test_delete(peewee_db, peewee_query):  # noqa: ANN001, ANN201, D103
 
     with peewee_db.atomic():
         peewee_db.execute_sql(
-            pathlib.Path(__file__).parent.joinpath("023_delete.sql").read_text()
+            pathlib.Path(__file__).parent.joinpath("023_delete.sql").read_text(),
         )
 
     columns, rows = peewee_query(
