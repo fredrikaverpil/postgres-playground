@@ -18,13 +18,13 @@ updates:
     groups:
       production-dependencies:
         dependency-type: "production"
-        update-types:
-          - minor
-          - patch
+        # update-types:
+        #   - minor
+        #   - patch
       development-dependencies:
         dependency-type: "development"
-        update-types:
-          - minor
-          - patch
+        # update-types:
+        #   - minor
+        #   - patch
         exclude-patterns:
           - "ruff"
