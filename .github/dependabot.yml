@@ -9,6 +9,8 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
+    ignore:
+      - dependency-name: "ruff"  # too much noise
     allow:
       - dependency-name: "*"
         dependency-type: all
