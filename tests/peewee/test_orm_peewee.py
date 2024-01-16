@@ -1,4 +1,4 @@
-import pathlib
+import pathlib  # noqa: INP001
 
 
 def test_peewee_create_table(peewee_db):  # noqa: ANN001, ANN201

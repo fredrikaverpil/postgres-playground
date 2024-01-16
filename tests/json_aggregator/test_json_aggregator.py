@@ -1,4 +1,4 @@
-import json
+import json  # noqa: INP001
 import pathlib
 
 
@@ -18,9 +18,9 @@ def test_export_json_data(  # noqa: ANN201
     columns, rows = psycopg2_query(psycopg2_cursor, sql, sql_params)
 
     json_filepath = tmp_path / "export.json"
-    with open(json_filepath, "w") as outfile:
+    with open(json_filepath, "w") as outfile:  # noqa: PTH123
         json.dump(rows[0][0], outfile)
-    with open(json_filepath) as infile:
+    with open(json_filepath) as infile:  # noqa: PTH123
         loaded_json = json.load(infile)
 
     assert columns == ["json_agg"]

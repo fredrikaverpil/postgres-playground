@@ -19,7 +19,7 @@ peewee = "^3.17.0"
 [tool.poetry.group.dev.dependencies]
 black = "*"
 mypy = "*"
-ruff = "*"
+ruff = "0.1.13" # avoid dependabot noise
 
 [tool.ruff]
 src = ["src", "tests"]

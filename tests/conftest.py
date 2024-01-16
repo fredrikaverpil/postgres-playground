@@ -11,6 +11,6 @@ def refactor(string: str) -> str:
 
 pytest_plugins = [
     refactor(fixture)
-    for fixture in glob("tests/fixtures/**/*.py")
-    if "__" not in fixture  # noqa: PLR2004
+    for fixture in glob("tests/fixtures/**/*.py")  # noqa: PTH207
+    if "__" not in fixture
 ]

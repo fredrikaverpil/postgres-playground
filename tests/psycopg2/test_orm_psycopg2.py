@@ -1,4 +1,4 @@
-import pathlib
+import pathlib  # noqa: INP001
 
 
 def test_psycopg2_cursor(psycopg2_cursor):  # noqa: ANN001, ANN201
