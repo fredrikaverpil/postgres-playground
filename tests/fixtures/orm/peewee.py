@@ -1,4 +1,4 @@
-import os
+import os  # noqa: INP001
 
 import pytest
 from playhouse.db_url import connect
